@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b503ejplxwt2t"]
+
+[ext_resource type="PackedScene" uid="uid://bwpt3mrrc8o6b" path="res://Configuration/configuration.tscn" id="1_2w1kt"]
+[ext_resource type="Script" uid="uid://kr50onfvpi6a" path="res://MonitorManager/MonitorManager.gd" id="1_qvhan"]
+[ext_resource type="PackedScene" uid="uid://qy0275slunrj" path="res://PatientWindow/patient_window.tscn" id="2_qvhan"]
+[ext_resource type="PackedScene" uid="uid://c7xcqxgadm1ss" path="res://ViewerWindow/ViewerControl.tscn" id="4_eunhr"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Configuration" parent="." instance=ExtResource("1_2w1kt")]
+NumberOfMonitors = 2
+
+[node name="PatientData" type="Node" parent="."]
+
+[node name="PatientControl" parent="." instance=ExtResource("2_qvhan")]
+
+[node name="MonitorManager" type="Node" parent="."]
+script = ExtResource("1_qvhan")
+
+[node name="ViewerControl" parent="." instance=ExtResource("4_eunhr")]
+visible = false
+layout_mode = 1

@@ -1,0 +1,6 @@
+- Main
+|- PatientData (with IPatient interface)
+|- MainToolBar (with configuration)
+|- PatientWindow (search functionality)
+|- ViewerWindow (hidden, but can show images on main monitor)
+|- MonitorManager (creates additional ViewerWindow and holds a list of all viewers)
