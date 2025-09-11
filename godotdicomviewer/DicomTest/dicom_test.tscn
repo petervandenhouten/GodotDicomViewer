@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://0j7rvkj4cq0k"]
+
+[ext_resource type="Script" uid="uid://cst3ryjxh6qar" path="res://DicomTest/DicomTest.cs" id="1_e88r0"]
+
+[node name="DicomTest" type="Node"]
+script = ExtResource("1_e88r0")

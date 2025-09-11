@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="GodotDicomViewer"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+run/main_scene="res://DicomTest/dicom_test.tscn"
+config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [dotnet]
