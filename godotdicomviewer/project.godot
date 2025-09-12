@@ -15,6 +15,11 @@ run/main_scene="uid://b503ejplxwt2t"
 config/features=PackedStringArray("4.4", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [dotnet]
 
 project/assembly_name="GodotDicomViewer"

@@ -19,7 +19,7 @@ func _ready() -> void:
 	
 	var config_monitors 	= config.NumberOfMonitors
 	var system_monitors		= DisplayServer.get_screen_count()
-	var addicional_viewers	= min(config_monitors, system_monitors-1)
+	var addicional_viewers	= min(config_monitors-1, system_monitors-1)
 	print("Monitor in config={0}, connected={1}, additional={2}".format([config_monitors, system_monitors, addicional_viewers]))
 
 	get_viewport().set_embedding_subwindows(false)

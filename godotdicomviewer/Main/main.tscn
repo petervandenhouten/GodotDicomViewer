@@ -2,23 +2,38 @@
 
 [ext_resource type="PackedScene" uid="uid://bwpt3mrrc8o6b" path="res://Configuration/configuration.tscn" id="1_2w1kt"]
 [ext_resource type="Script" uid="uid://kr50onfvpi6a" path="res://MonitorManager/MonitorManager.gd" id="1_qvhan"]
-[ext_resource type="PackedScene" uid="uid://qy0275slunrj" path="res://PatientWindow/patient_window.tscn" id="2_qvhan"]
+[ext_resource type="PackedScene" uid="uid://cjgf1vkdhpchx" path="res://PatientWindow/PatientControl.tscn" id="2_eunhr"]
 [ext_resource type="PackedScene" uid="uid://c7xcqxgadm1ss" path="res://ViewerWindow/ViewerControl.tscn" id="4_eunhr"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PatientControl" parent="PanelContainer" instance=ExtResource("2_eunhr")]
+layout_mode = 2
+
+[node name="ViewerControl" parent="PanelContainer" instance=ExtResource("4_eunhr")]
+visible = false
+layout_mode = 2
 
 [node name="Configuration" parent="." instance=ExtResource("1_2w1kt")]
-NumberOfMonitors = 2
+NumberOfMonitors = 1
 
 [node name="PatientData" type="Node" parent="."]
 
-[node name="PatientControl" parent="." instance=ExtResource("2_qvhan")]
-
 [node name="MonitorManager" type="Node" parent="."]
 script = ExtResource("1_qvhan")
-
-[node name="ViewerControl" parent="." instance=ExtResource("4_eunhr")]
-visible = false
-layout_mode = 1
