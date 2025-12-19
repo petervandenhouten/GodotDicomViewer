@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjgf1vkdhpchx"]
+[gd_scene load_steps=10 format=3 uid="uid://cjgf1vkdhpchx"]
 
 [ext_resource type="Theme" uid="uid://lg8kcojpfs7f" path="res://Themes/ThemeTest.tres" id="1_aqf76"]
+[ext_resource type="Script" uid="uid://b78unxao3fmif" path="res://PatientWindow/PatientDataControl.cs" id="2_5svtf"]
+[ext_resource type="Script" uid="uid://idgc04mac0hr" path="res://PatientWindow/Search.cs" id="2_ahd7i"]
+[ext_resource type="Script" uid="uid://csurtxg1ljgux" path="res://PatientWindow/SearchResultsClass.cs" id="2_u7rn4"]
+[ext_resource type="Script" uid="uid://bierj4tu030yc" path="res://PatientWindow/patient_table_controller.gd" id="3_gdepm"]
+[ext_resource type="Script" uid="uid://by7ubl72da02t" path="res://addons/dynamic_table/dynamic_table.gd" id="3_n27q4"]
+[ext_resource type="Script" uid="uid://sp3siq3b13am" path="res://PatientWindow/results_container.gd" id="4_hfiv1"]
+[ext_resource type="Script" uid="uid://o5emxmawsx57" path="res://PatientWindow/study_table_controller.gd" id="6_tuand"]
+[ext_resource type="Script" uid="uid://qxyoo4djmni1" path="res://PatientWindow/button_back_to_patients.gd" id="7_hfiv1"]
 
-[node name="PatientControl" type="Control"]
+[node name="PatientDataControl" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,8 +19,13 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_aqf76")
+script = ExtResource("2_5svtf")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="SearchResults" type="Node" parent="." groups=["SearchResults"]]
+script = ExtResource("2_u7rn4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,3 +33,73 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_aqf76")
+
+[node name="SearchContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme = ExtResource("1_aqf76")
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/SearchContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_ahd7i")
+
+[node name="ResultsContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_aqf76")
+script = ExtResource("4_hfiv1")
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/ResultsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PatientTableController" type="Control" parent="HBoxContainer/ResultsContainer/PanelContainer"]
+visible = false
+clip_contents = true
+layout_mode = 2
+script = ExtResource("3_gdepm")
+
+[node name="DynamicTable" type="Control" parent="HBoxContainer/ResultsContainer/PanelContainer/PatientTableController"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("3_n27q4")
+metadata/_custom_type_script = "uid://by7ubl72da02t"
+
+[node name="StudyTableController" type="Control" parent="HBoxContainer/ResultsContainer/PanelContainer"]
+layout_mode = 2
+script = ExtResource("6_tuand")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ResultsContainer/PanelContainer/StudyTableController"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/ResultsContainer/PanelContainer/StudyTableController/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Button" type="Button" parent="HBoxContainer/ResultsContainer/PanelContainer/StudyTableController/VBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "Back to patients"
+script = ExtResource("7_hfiv1")
+
+[node name="DynamicTable" type="Control" parent="HBoxContainer/ResultsContainer/PanelContainer/StudyTableController/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+script = ExtResource("3_n27q4")
+metadata/_custom_type_script = "uid://by7ubl72da02t"
+
+[connection signal="row_double_clicked" from="HBoxContainer/ResultsContainer/PanelContainer/PatientTableController/DynamicTable" to="." method="_on_patient_table_row_double_clicked"]
+[connection signal="pressed" from="HBoxContainer/ResultsContainer/PanelContainer/StudyTableController/VBoxContainer/PanelContainer/Button" to="HBoxContainer/ResultsContainer" method="_on_button_back_to_patients_pressed"]

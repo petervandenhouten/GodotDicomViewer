@@ -1,4 +1,4 @@
-using GodotDicomViewer.Interfaces;
+using GodotDicomViewer.Code.Interfaces;
 
 namespace GodotDicomViewer.Configuration
 {

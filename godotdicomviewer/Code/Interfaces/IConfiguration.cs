@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GodotDicomViewer.Interfaces
+namespace GodotDicomViewer.Code.Interfaces
 {
     public interface IConfiguration
     {

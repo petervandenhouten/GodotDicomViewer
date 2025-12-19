@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ed10rkj08mtn"]
+
+[ext_resource type="Script" uid="uid://bcccvtjiaoiml" path="res://Code/StudySources/Test/TestStudySource.cs" id="1_i5qxr"]
+
+[node name="TestStudySource" type="Node"]
+script = ExtResource("1_i5qxr")

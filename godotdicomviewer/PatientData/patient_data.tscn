@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://do3ug3eqvb8o4"]
+
+[ext_resource type="PackedScene" uid="uid://ed10rkj08mtn" path="res://PatientData/test_study_source.tscn" id="1_8gfcb"]
+[ext_resource type="Script" uid="uid://3xo08viq0f4r" path="res://Code/StudySources/PatientDataStudySource.cs" id="1_tmhoj"]
+
+[node name="PatientData" type="Node" node_paths=PackedStringArray("StudySources")]
+script = ExtResource("1_tmhoj")
+StudySources = [NodePath("TestStudySource")]
+
+[node name="TestStudySource" parent="." instance=ExtResource("1_8gfcb")]

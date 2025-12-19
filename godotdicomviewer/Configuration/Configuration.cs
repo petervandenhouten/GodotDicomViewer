@@ -1,6 +1,6 @@
 using Godot;
+using GodotDicomViewer.Code.Interfaces;
 using GodotDicomViewer.Configuration;
-using GodotDicomViewer.Interfaces;
 
 public partial class Configuration : Node
 {
@@ -12,8 +12,7 @@ public partial class Configuration : Node
 	}
 
 	#region Main settings
-	[Export]
-	public int NumberOfMonitors
+	[Export] public int NumberOfMonitors
 	{
 		get => m_config.NumberOfMonitors;
 		set => m_config.NumberOfMonitors = value;

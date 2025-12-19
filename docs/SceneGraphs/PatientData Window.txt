@@ -1,0 +1,18 @@
+Model-view-control
+
+PatientDataControl (control, has Main\PatientData as property)
+|- SearchResults, holds data (model)
+|- HBOX (views)
+   |- SearchContainer (left side)
+      |- Panel (gui)
+	     |- text fields/comboboxes/checkboxes
+		 |- search button (signal goto PatientDataControl)
+		 |- saved search and save search as...
+   |- ResultsContainter (main, right side)
+      |- Panel (gui)
+	     |- PatientTableController (visible or not)
+		    |- Table
+			|- Open button (signal goto PatientDataControl?)
+		 |- StudyTableController (visible or not)
+			|- Patient info labels
+			|- Table

@@ -25,13 +25,13 @@ func _ready() -> void:
 	get_viewport().set_embedding_subwindows(false)
 
 	# set patient window to size of default monitor
-	var patient_window = main.get_node("PatientControl");
-	if ( patient_window == null ):
-		print("No patient window node found.")
-	if ( patient_window != null ):
-		patient_window.visible  = true
-		patient_window.position = DisplayServer.screen_get_position(-1)
-		patient_window.size  	= DisplayServer.screen_get_size(-1)
+	#var patient_window = main.get_node("PatientControl");
+	#if ( patient_window == null ):
+	#	print("No patient window node found.")
+	#if ( patient_window != null ):
+	#	patient_window.visible  = true
+	#	patient_window.position = DisplayServer.screen_get_position(-1)
+	#	patient_window.size  	= DisplayServer.screen_get_size(-1)
 	
 	if ( addicional_viewers > 0 ):
 		for additional in range(addicional_viewers):

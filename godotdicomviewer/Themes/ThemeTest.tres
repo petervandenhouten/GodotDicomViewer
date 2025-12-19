@@ -16,4 +16,3 @@ corner_detail = 3
 
 [resource]
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_f5imd")
-VBoxContainer/constants/separation = 10
