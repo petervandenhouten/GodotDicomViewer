@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://svaa2j2atal5"]
+
+[ext_resource type="Script" uid="uid://egynxkvdquxn" path="res://Configuration/TestConfiguration.cs" id="1_awydj"]
+
+[node name="Configuration-Test" type="Node" groups=["Configuration"]]
+script = ExtResource("1_awydj")
+NumberOfMonitors = 2

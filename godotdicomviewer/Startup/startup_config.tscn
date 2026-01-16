@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0gc3362wyio3"]
+
+[ext_resource type="Script" uid="uid://bv0pdewbfcixp" path="res://Startup/StartupConfig.cs" id="1_uaglh"]
+
+[node name="Startup-Config" type="Node"]
+script = ExtResource("1_uaglh")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnwgum8njemwy"]
+
+[ext_resource type="Theme" uid="uid://bldstjecg3bs8" path="res://Themes/OutlineTheme.tres" id="1_haxu8"]
+[ext_resource type="PackedScene" uid="uid://dlhx0f1jijsid" path="res://GUI/ViewerWindow/Series/series_toolbar.tscn" id="1_tkkwv"]
+[ext_resource type="PackedScene" uid="uid://paamkvklh1pv" path="res://GUI/ViewerWindow/Series/series_contents.tscn" id="3_jj478"]
+
+[node name="SeriesControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -352.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_haxu8")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical = true
+
+[node name="SeriesToolbar" parent="BoxContainer" instance=ExtResource("1_tkkwv")]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="SeriesContents" parent="BoxContainer" instance=ExtResource("3_jj478")]
+layout_mode = 2

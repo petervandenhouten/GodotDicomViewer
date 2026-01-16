@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dusfk5stbu2cj"]
+
+[ext_resource type="PackedScene" uid="uid://xru5mthycfo0" path="res://GUI/ViewerWindow/Study/study_control.tscn" id="1_1wcou"]
+[ext_resource type="Theme" uid="uid://bldstjecg3bs8" path="res://Themes/OutlineTheme.tres" id="1_6eqox"]
+
+[node name="StudyContainer" type="BoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_6eqox")
+
+[node name="StudyControl3" parent="." instance=ExtResource("1_1wcou")]
+layout_mode = 2
+
+[node name="StudyControl2" parent="." instance=ExtResource("1_1wcou")]
+layout_mode = 2

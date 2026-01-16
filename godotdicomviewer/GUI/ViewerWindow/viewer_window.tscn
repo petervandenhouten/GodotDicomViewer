@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://obv1wpjxj5g2"]
+
+[ext_resource type="PackedScene" uid="uid://bwsx7nhogr7uy" path="res://GUI/ViewerWindow/viewer_window_contents.tscn" id="1_fv514"]
+
+[node name="ViewerWindow" type="Window"]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(400, 400)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ViewerWindowToolbar" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Viewer | Monitor | Help | Exit"
+
+[node name="ViewerWindowContents" parent="VBoxContainer" instance=ExtResource("1_fv514")]
+layout_mode = 2

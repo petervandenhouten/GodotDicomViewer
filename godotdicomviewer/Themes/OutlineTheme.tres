@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bldstjecg3bs8"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6w5sg"]
+
+[resource]
+GraphFrame/colors/resizer_color = Color(0.11372549, 0.49803922, 0.8745098, 1)
+GraphFrame/styles/panel = SubResource("StyleBoxLine_6w5sg")
+Label/colors/font_color = Color(1, 1, 0.2, 1)
+MarginContainer/constants/margin_bottom = 4
+MarginContainer/constants/margin_left = 4
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 4
+PanelContainer/styles/panel = null

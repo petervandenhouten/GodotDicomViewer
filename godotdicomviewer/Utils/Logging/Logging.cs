@@ -1,5 +1,4 @@
 using Godot;
-using GodotDicomViewer.StudySources.Test;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
@@ -16,16 +15,22 @@ public class GodotSink : ILogEventSink
 
 public partial class Logging : Node
 {
+	[Export]
+	public string LogFile { get; set; } = "gdv_log.txt";
+
 	private static readonly ILogger _log = Log.ForContext<Logging>();
 	public override void _Ready()
 	{
+		var filepath = "user://" + LogFile;
+		
 		Log.Logger = new LoggerConfiguration()
 						.MinimumLevel.Debug()
 						.Enrich.FromLogContext()
 						.WriteTo.Sink(new GodotSink())
-						.WriteTo.File("user://gdv_log.txt", outputTemplate: "outputTemplate: \"{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] [{SourceContext}] {Message}{NewLine}{Exception}{NewLine}{Properties}\"")
+						.WriteTo.File(filepath, outputTemplate: "outputTemplate: \"{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] [{SourceContext}] {Message}{NewLine}{Exception}{NewLine}{Properties}\"")
 						.CreateLogger();
 
 		_log.Information("Godot Dicom Viewer from Serilog!");
+		_log.Information("Log file stored in {path}", ProjectSettings.GlobalizePath(filepath));
 	}
 }

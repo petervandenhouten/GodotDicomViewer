@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://obv1wpjxj5g2"]
-
-[ext_resource type="PackedScene" uid="uid://c7xcqxgadm1ss" path="res://ViewerWindow/ViewerControl.tscn" id="1_ur4cl"]
-
-[node name="ViewerWindow" type="Window"]
-position = Vector2i(0, 36)
-
-[node name="ViewerControl" parent="." instance=ExtResource("1_ur4cl")]

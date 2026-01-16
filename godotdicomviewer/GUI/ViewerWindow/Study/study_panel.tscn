@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://crlpoa0o0nn26"]
+
+[ext_resource type="Texture2D" uid="uid://cho1umrnxsqie" path="res://GUI/ViewerWindow/test.png" id="1_2pv7u"]
+
+[node name="StudyPanel" type="Panel"]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "STUDY "
+
+[node name="Test" type="Sprite2D" parent="."]
+texture = ExtResource("1_2pv7u")

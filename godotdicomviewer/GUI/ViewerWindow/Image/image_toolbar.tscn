@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dh0mj3ck5sf1e"]
+
+[node name="ImageToolbar" type="BoxContainer"]
+size_flags_horizontal = 3
+
+[node name="Button1" type="Button" parent="."]
+layout_mode = 2
+text = "Zoom"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 2
+text = "Windowing"

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwpt3mrrc8o6b"]
+
+[ext_resource type="Script" uid="uid://pcvw86x7ssar" path="res://Configuration/FileConfiguration.cs" id="1_iy06v"]
+
+[node name="Configuration-File" type="Node" groups=["Configuration"]]
+script = ExtResource("1_iy06v")
+NumberOfMonitors = 1

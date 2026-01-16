@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://xvpad08tioqm"]
+
+[ext_resource type="Script" uid="uid://csa3qxhef7rkn" path="res://GUI/Monitor/MonitorManager.cs" id="1_f2hom"]
+
+[node name="Monitor" type="Node" groups=["Monitor"]]
+script = ExtResource("1_f2hom")

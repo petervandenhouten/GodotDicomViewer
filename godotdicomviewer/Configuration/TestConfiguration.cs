@@ -1,9 +1,10 @@
-using GodotDicomViewer.Code.Interfaces;
+using Godot;
+using GodotDicomViewer.Configuration;
 
 namespace GodotDicomViewer.Configuration
 {
-    internal class TestConfiguration : IConfiguration
-    {
-        public int NumberOfMonitors { get; set; } = 2;
-    }
+	[Tool]
+	public partial class TestConfiguration : BaseConfiguration, IConfiguration
+	{
+	}
 }

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bksyecgwbudpx"]
+
+[ext_resource type="PackedScene" uid="uid://bnwgum8njemwy" path="res://GUI/ViewerWindow/Series/series_control.tscn" id="1_vckuy"]
+
+[node name="SeriesContainer" type="BoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -552.0
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+vertical = true
+
+[node name="SeriesControl" parent="." instance=ExtResource("1_vckuy")]
+layout_mode = 2
+
+[node name="SeriesControl2" parent="." instance=ExtResource("1_vckuy")]
+layout_mode = 2

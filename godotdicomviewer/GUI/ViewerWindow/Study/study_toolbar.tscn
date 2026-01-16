@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://rbk8ksqkow1w"]
+
+[node name="StudyToolbar" type="Label"]
+size_flags_vertical = 1
+text = "STUDY control Patient Name
+"

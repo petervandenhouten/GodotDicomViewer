@@ -2,7 +2,7 @@ using Godot;
 using System;
 using Serilog;
 
-public partial class PatientDataControl : Control
+public partial class PatientDataControl : Window
 {
 	private static readonly ILogger _log = Log.ForContext<PatientDataControl>();
 	

@@ -1,26 +1,11 @@
 using Godot;
-using GodotDicomViewer.Code.Interfaces;
 using GodotDicomViewer.Configuration;
 
-public partial class Configuration : Node
+namespace GodotDicomViewer.Configuration
 {
-	private IConfiguration m_config;
-
-	public Configuration()
+	public class Configuration : IConfiguration
 	{
-		m_config = new TestConfiguration();
-	}
-
-	#region Main settings
-	[Export] public int NumberOfMonitors
-	{
-		get => m_config.NumberOfMonitors;
-		set => m_config.NumberOfMonitors = value;
-	}
-	#endregion
-
-	public override void _Ready()
-	{
-		
+		public int NumberOfMonitors { get; set; } = 1;
+		public int PatientsMonitor { get; set; } = 0;
 	}
 }

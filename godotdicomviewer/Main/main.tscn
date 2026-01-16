@@ -1,13 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://b503ejplxwt2t"]
 
-[ext_resource type="PackedScene" uid="uid://bwpt3mrrc8o6b" path="res://Configuration/configuration.tscn" id="1_2w1kt"]
-[ext_resource type="Script" uid="uid://cisr8jbiyrali" path="res://Main/Logging.cs" id="1_liyct"]
-[ext_resource type="Script" uid="uid://kr50onfvpi6a" path="res://MonitorManager/MonitorManager.gd" id="1_qvhan"]
-[ext_resource type="PackedScene" uid="uid://cjgf1vkdhpchx" path="res://PatientWindow/PatientControl.tscn" id="2_eunhr"]
-[ext_resource type="PackedScene" uid="uid://c7xcqxgadm1ss" path="res://ViewerWindow/ViewerControl.tscn" id="4_eunhr"]
+[ext_resource type="Script" uid="uid://cdynuque3m0ho" path="res://GUI/GuiManager.cs" id="4_f6fdm"]
 [ext_resource type="PackedScene" uid="uid://do3ug3eqvb8o4" path="res://PatientData/patient_data.tscn" id="4_k3v36"]
+[ext_resource type="PackedScene" uid="uid://xvpad08tioqm" path="res://GUI/Monitor/monitor.tscn" id="4_liyct"]
+[ext_resource type="PackedScene" uid="uid://caas075ojprpx" path="res://Startup/startup_dev.tscn" id="5_k3v36"]
+[ext_resource type="PackedScene" uid="uid://svaa2j2atal5" path="res://Configuration/configuration_test.tscn" id="5_liyct"]
+[ext_resource type="PackedScene" uid="uid://c66q550i162m" path="res://Utils/Logging/logging.tscn" id="7_ib3t1"]
 
 [node name="Main" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,29 +18,19 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Logging" type="Node" parent="."]
-script = ExtResource("1_liyct")
+[node name="Logging" parent="." instance=ExtResource("7_ib3t1")]
 
-[node name="Configuration" parent="." instance=ExtResource("1_2w1kt")]
-NumberOfMonitors = 2
+[node name="PatientData" parent="." node_paths=PackedStringArray("StudySources") instance=ExtResource("4_k3v36")]
+StudySources = []
 
-[node name="PatientData" parent="." instance=ExtResource("4_k3v36")]
+[node name="GUI" type="Node" parent="."]
+script = ExtResource("4_f6fdm")
 
-[node name="MonitorManager" type="Node" parent="."]
-script = ExtResource("1_qvhan")
+[node name="Monitor" parent="GUI" instance=ExtResource("4_liyct")]
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="DataSources" type="Node" parent="."]
 
-[node name="PatientDataControl" parent="PanelContainer" node_paths=PackedStringArray("PatientData") instance=ExtResource("2_eunhr")]
-layout_mode = 2
-PatientData = NodePath("../../PatientData")
+[node name="Configuration-Test" parent="." instance=ExtResource("5_liyct")]
+NumberOfMonitors = 1
 
-[node name="ViewerControl" parent="PanelContainer" instance=ExtResource("4_eunhr")]
-visible = false
-layout_mode = 2
+[node name="Startup-Dev" parent="." instance=ExtResource("5_k3v36")]
