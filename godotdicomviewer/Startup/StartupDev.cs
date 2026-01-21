@@ -17,13 +17,15 @@ public partial class StartupDev : Node
 		{
 			_log.Error("No GUI node found");
 		}
-		if ( !HasNode("/root/Main/Configuration") )
+		
+		var configNodesInGroup = GetTree().GetNodesInGroup("Configuration");
+		if ( configNodesInGroup.Count == 0  )
 		{
 			_log.Error("No Configuration node found");
 		}
-
-		var config = GetNode<Configuration>("/root/Main/Configuration");
-		_log.Information("COnfig NumberOfMonitors: {x}", config.NumberOfMonitors);
+		var config_node = configNodesInGroup[0];
+		var config = config_node as IConfiguration;
+		_log.Information("Config NumberOfMonitors: {x}", config.NumberOfMonitors);
 		
 		var gui = GetNode<GuiManager>("/root/Main/GUI");
 		gui.Start();

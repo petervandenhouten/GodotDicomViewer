@@ -9,13 +9,16 @@ public partial class MonitorManager : Node
 	[Export] public bool HasViewerWindow { get; set; } = true;
 
 	private static readonly ILogger _log = Log.ForContext<MonitorManager>();
-	private static readonly PackedScene viewer_window = GD.Load<PackedScene>("res://GUI//ViewerWindow/viewer_window.tscn");
+	private static readonly PackedScene viewer_window = GD.Load<PackedScene>("res://GUI//ViewerWindow/viewer/viewer_window.tscn");
 	private static readonly PackedScene patient_window = GD.Load<PackedScene>("res://GUI//PatientWindow/patient_window.tscn");
 
 	public override void _Ready()
 	{
 		if ( MonitorId<0 ) return;
 
+		if ( viewer_window is null ) _log.Error("No scene for viewer window");
+		if ( patient_window is null ) _log.Error("No scene for patient window");
+		
 		GetViewport().SetEmbeddingSubwindows(false);
 		if ( HasViewerWindow ) InstantiateViewerWindow();
 		if ( HasPatientWindow ) InstantiatePatientWindow();
