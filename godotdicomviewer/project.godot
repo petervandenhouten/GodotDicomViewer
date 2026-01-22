@@ -28,6 +28,10 @@ project/assembly_name="GodotDicomViewer"
 
 enabled=PackedStringArray("res://addons/dynamic_table/plugin.cfg")
 
+[global_group]
+
+DataSource=""
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

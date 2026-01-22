@@ -27,7 +27,6 @@ StudySources = []
 script = ExtResource("4_f6fdm")
 
 [node name="Monitor" parent="GUI" instance=ExtResource("4_liyct")]
-HasPatientWindow = true
 
 [node name="DataSources" type="Node" parent="."]
 

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh3m5sj1sepsp"]
+
+[ext_resource type="Script" uid="uid://c6m2l4rcgv78j" path="res://PatientData/ImageSource/TestImageSource.cs" id="1_qvy4g"]
+
+[node name="ImageSource_Test" type="Node" groups=["DataSource"]]
+script = ExtResource("1_qvy4g")

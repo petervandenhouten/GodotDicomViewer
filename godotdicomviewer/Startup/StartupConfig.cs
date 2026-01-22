@@ -17,8 +17,7 @@ public partial class StartupConfig : Node
 		{
 			_log.Error("No GUI node found");
 		}
-		
-		
+				
 		var configNodesInGroup = GetTree().GetNodesInGroup("Configuration");
 		if ( configNodesInGroup.Count == 0  )
 		{
