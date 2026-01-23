@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5uvonvd4hn1u"]
 
 [ext_resource type="Script" uid="uid://11krl87ift3" path="res://GUI/ViewerWindow/Image/ImageContent.cs" id="1_et6yg"]
-[ext_resource type="Texture2D" path="res://GUI/ViewerWindow/Image/background.jpg" id="1_mawja"]
+[ext_resource type="Texture2D" uid="uid://bl3hjkrpuo8mn" path="res://PatientData/ImageSource/background.jpg" id="1_mawja"]
 [ext_resource type="PackedScene" uid="uid://bh3m5sj1sepsp" path="res://PatientData/ImageSource/image_source_test.tscn" id="3_et6yg"]
 
 [node name="ImageContent" type="GridContainer"]
