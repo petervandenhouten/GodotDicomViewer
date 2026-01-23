@@ -13,7 +13,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_6eqox")
 
-[node name="StudyControl3" parent="." instance=ExtResource("1_1wcou")]
+[node name="StudyControl1" parent="." instance=ExtResource("1_1wcou")]
 layout_mode = 2
 
 [node name="StudyControl2" parent="." instance=ExtResource("1_1wcou")]

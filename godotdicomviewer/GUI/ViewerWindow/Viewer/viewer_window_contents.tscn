@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwsx7nhogr7uy"]
+[gd_scene load_steps=3 format=3 uid="uid://bwsx7nhogr7uy"]
 
 [ext_resource type="PackedScene" uid="uid://dusfk5stbu2cj" path="res://GUI/ViewerWindow/Study/study_container.tscn" id="1_ilh48"]
+[ext_resource type="Theme" uid="uid://bldstjecg3bs8" path="res://Themes/OutlineTheme.tres" id="1_l642y"]
 
-[node name="ViewerWindowContents" type="Control"]
-layout_mode = 3
+[node name="ViewerWindowContents" type="Panel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_l642y")
 
 [node name="StudyContainer" parent="." instance=ExtResource("1_ilh48")]
 layout_mode = 1

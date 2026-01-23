@@ -57,6 +57,6 @@ public partial class MonitorManager : Node
 		viewer.Visible 	= true;
 		viewer.Position = DisplayServer.ScreenGetPosition(MonitorId);
 		viewer.Title 	= "Viewer " + MonitorId;
-		viewer.Size  	= DisplayServer.ScreenGetSize(MonitorId);
+		viewer.Size  	= DisplayServer.ScreenGetSize(MonitorId); // - new Vector2I(8,4);
 	}
 }

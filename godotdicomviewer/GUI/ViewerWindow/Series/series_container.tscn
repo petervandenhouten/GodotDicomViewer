@@ -14,8 +14,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 vertical = true
 
-[node name="SeriesControl" parent="." instance=ExtResource("1_vckuy")]
+[node name="SeriesControl2" parent="." instance=ExtResource("1_vckuy")]
 layout_mode = 2
 
-[node name="SeriesControl2" parent="." instance=ExtResource("1_vckuy")]
+[node name="SeriesControl" parent="." instance=ExtResource("1_vckuy")]
 layout_mode = 2
