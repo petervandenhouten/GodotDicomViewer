@@ -1,12 +1,19 @@
-[gd_scene format=3 uid="uid://dh0mj3ck5sf1e"]
+[gd_scene load_steps=2 format=3 uid="uid://dh0mj3ck5sf1e"]
+
+[ext_resource type="Script" uid="uid://c328elwg4nby5" path="res://GUI/Controls/CommandButton.cs" id="1_261e1"]
 
 [node name="ImageToolbar" type="BoxContainer"]
 size_flags_horizontal = 3
 
-[node name="Button1" type="Button" parent="."]
+[node name="CommandButton-Zoom" type="Button" parent="."]
 layout_mode = 2
+toggle_mode = true
+action_mode = 0
 text = "Zoom"
+script = ExtResource("1_261e1")
 
 [node name="Button2" type="Button" parent="."]
 layout_mode = 2
 text = "Windowing"
+
+[connection signal="toggled" from="CommandButton-Zoom" to="CommandButton-Zoom" method="button_toggled"]

@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5uvonvd4hn1u"]
+[gd_scene load_steps=6 format=3 uid="uid://b5uvonvd4hn1u"]
 
 [ext_resource type="Script" uid="uid://11krl87ift3" path="res://GUI/ViewerWindow/Image/ImageContent.cs" id="1_et6yg"]
 [ext_resource type="Texture2D" uid="uid://bl3hjkrpuo8mn" path="res://PatientData/ImageSource/background.jpg" id="1_mawja"]
+[ext_resource type="Shader" uid="uid://br2biojjtc8xt" path="res://GUI/ViewerWindow/Image/Shaders/image_content.gdshader" id="2_0e7k0"]
 [ext_resource type="PackedScene" uid="uid://bh3m5sj1sepsp" path="res://PatientData/ImageSource/image_source_test.tscn" id="3_et6yg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n15mh"]
+shader = ExtResource("2_0e7k0")
+shader_parameter/tint_color = Color(0.69296587, 0.33646062, 0.0839859, 1)
 
 [node name="ImageContent" type="GridContainer"]
 anchors_preset = 15
@@ -15,6 +20,7 @@ size_flags_vertical = 3
 script = ExtResource("1_et6yg")
 
 [node name="ImageHolder" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_n15mh")
 position = Vector2(162, 125)
 texture = ExtResource("1_mawja")
 

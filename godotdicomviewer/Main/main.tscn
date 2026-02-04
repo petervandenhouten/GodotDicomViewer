@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b503ejplxwt2t"]
+[gd_scene load_steps=8 format=3 uid="uid://b503ejplxwt2t"]
 
 [ext_resource type="Script" uid="uid://cdynuque3m0ho" path="res://GUI/GuiManager.cs" id="4_f6fdm"]
 [ext_resource type="PackedScene" uid="uid://do3ug3eqvb8o4" path="res://PatientData/patient_data.tscn" id="4_k3v36"]
 [ext_resource type="PackedScene" uid="uid://xvpad08tioqm" path="res://GUI/Monitor/monitor.tscn" id="4_liyct"]
+[ext_resource type="Script" uid="uid://dyhfmvs7puriq" path="res://GUI/Controls/Mediator.cs" id="5_ib3t1"]
 [ext_resource type="PackedScene" uid="uid://caas075ojprpx" path="res://Startup/startup_dev.tscn" id="5_k3v36"]
 [ext_resource type="PackedScene" uid="uid://svaa2j2atal5" path="res://Configuration/configuration_test.tscn" id="5_liyct"]
 [ext_resource type="PackedScene" uid="uid://c66q550i162m" path="res://Utils/Logging/logging.tscn" id="7_ib3t1"]
@@ -27,6 +28,9 @@ StudySources = []
 script = ExtResource("4_f6fdm")
 
 [node name="Monitor" parent="GUI" instance=ExtResource("4_liyct")]
+
+[node name="Mediator" type="Node" parent="GUI" groups=["Mediator"]]
+script = ExtResource("5_ib3t1")
 
 [node name="DataSources" type="Node" parent="."]
 

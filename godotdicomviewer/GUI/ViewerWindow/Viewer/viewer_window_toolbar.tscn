@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://db7yqqeb1f0qs"]
+[gd_scene load_steps=3 format=3 uid="uid://db7yqqeb1f0qs"]
 
 [ext_resource type="Theme" uid="uid://bldstjecg3bs8" path="res://Themes/OutlineTheme.tres" id="1_auli5"]
+[ext_resource type="Script" uid="uid://c328elwg4nby5" path="res://GUI/Controls/CommandButton.cs" id="2_h5lrm"]
 
 [node name="ViewerWindowToolbar" type="Panel"]
 custom_minimum_size = Vector2(200, 40)
@@ -26,11 +27,13 @@ size_flags_vertical = 4
 text = "Viewer/Patients
 "
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="CommandButton-Exit" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 text = "Exit
 "
+script = ExtResource("2_h5lrm")
+ButtonID = "Exit"
 
 [node name="Control" type="Control" parent="HBoxContainer"]
 layout_mode = 2
@@ -42,3 +45,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "wefwfeeRF"
 horizontal_alignment = 2
+
+[connection signal="pressed" from="HBoxContainer/CommandButton-Exit" to="HBoxContainer/CommandButton-Exit" method="button_pressed"]

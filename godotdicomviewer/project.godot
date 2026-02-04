@@ -12,6 +12,7 @@ config_version=5
 
 config/name="GodotDicomViewer"
 run/main_scene="uid://b503ejplxwt2t"
+config/auto_accept_quit=false
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -23,6 +24,10 @@ window/stretch/aspect="expand"
 [dotnet]
 
 project/assembly_name="GodotDicomViewer"
+
+[editor]
+
+version_control/autoload_on_startup=true
 
 [editor_plugins]
 
