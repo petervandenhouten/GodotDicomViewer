@@ -10,6 +10,9 @@ public interface IMediator
 	
 	//event command_triggered_delegate command_triggered;
 	event EventHandler<string> command_triggered;
+	
+	// X wont compile, use a delegate?
+	// event EventHandler<string, bool> command_active_changed;
 
 	// command( ... , node(=parent of button) )
 	

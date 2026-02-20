@@ -6,7 +6,7 @@ public partial class ImageContent : GridContainer
 {
 	private static readonly ILogger _log = Log.ForContext<ImageContent>();
 	private Sprite2D image_holder;
-	private IImageSource image_source;
+	private IImageSource? image_source;
 	
  	public override void _Ready()
  	{
@@ -21,7 +21,7 @@ public partial class ImageContent : GridContainer
 		{
 			if (child is Node node && node.IsInGroup("DataSource"))
 			{
-				if ( image_source is null )
+				if ( image_source == null )
 				{
 					image_source = child as IImageSource;
 					_log.Information("Direct child in group: {name}", node.Name);

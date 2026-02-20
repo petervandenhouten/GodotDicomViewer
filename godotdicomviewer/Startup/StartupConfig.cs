@@ -26,17 +26,21 @@ public partial class StartupConfig : Node
 
 		var config_node = configNodesInGroup[0];
 		await ToSignal(config_node, "ready");
-		
-		var config = config_node as IConfiguration;
-		_log.Information("Config NumberOfMonitors: {x}", config.NumberOfMonitors);
-		_log.Information("Config Patients monitor: {x}", config.PatientsMonitor);
 
 		var gui = GetNode<GuiManager>("/root/Main/GUI");
-		for ( int monitor = 0 ; monitor<config.NumberOfMonitors; monitor++)
+		
+		var config = config_node as IConfiguration;
+		if ( config != null )
 		{
-			bool has_viewer = true;
-			bool has_patient = (monitor == config.PatientsMonitor);
-			gui.AddMonitor(monitor, has_viewer, has_patient);
+			_log.Information("Config NumberOfMonitors: {x}", config.NumberOfMonitors);
+			_log.Information("Config Patients monitor: {x}", config.PatientsMonitor);
+
+			for ( int monitor = 0 ; monitor<config.NumberOfMonitors; monitor++)
+			{
+				bool has_viewer = true;
+				bool has_patient = (monitor == config.PatientsMonitor);
+				gui.AddMonitor(monitor, has_viewer, has_patient);
+			}
 		}
 		gui.Start();
 	}

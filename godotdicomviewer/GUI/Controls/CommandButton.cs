@@ -14,13 +14,14 @@ public partial class CommandButton : Button, ICommandControl
 	// command , like "ImageControl" or "SeriesControl"
 	
 	private static readonly ILogger _log = Log.ForContext<CommandButton>();
-	private IMediator _mediator = null;
+	private IMediator? _mediator = null;
 	
 	public override async void _Ready()
 	{
+		// special way to connect to mediator, we have to wait until it is ready
+		// maybe make mediator autoload?
 		var find_group_nodes = GetTree().GetNodesInGroup("Mediator");
 		if ( find_group_nodes.Count == 0  ) _log.Error("No Mediator node found.");
-		
 		var mediator_node = find_group_nodes[0];
 		await ToSignal(mediator_node, "ready");
 		_mediator = mediator_node as IMediator;

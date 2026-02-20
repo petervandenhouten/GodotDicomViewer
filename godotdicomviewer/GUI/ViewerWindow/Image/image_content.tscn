@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5uvonvd4hn1u"]
+[gd_scene load_steps=8 format=3 uid="uid://b5uvonvd4hn1u"]
 
 [ext_resource type="Script" uid="uid://11krl87ift3" path="res://GUI/ViewerWindow/Image/ImageContent.cs" id="1_et6yg"]
 [ext_resource type="Texture2D" uid="uid://bl3hjkrpuo8mn" path="res://PatientData/ImageSource/background.jpg" id="1_mawja"]
 [ext_resource type="Shader" uid="uid://br2biojjtc8xt" path="res://GUI/ViewerWindow/Image/Shaders/image_content.gdshader" id="2_0e7k0"]
 [ext_resource type="PackedScene" uid="uid://bh3m5sj1sepsp" path="res://PatientData/ImageSource/image_source_test.tscn" id="3_et6yg"]
+[ext_resource type="Texture2D" uid="uid://cho1umrnxsqie" path="res://GUI/ViewerWindow/test.png" id="5_n15mh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n15mh"]
 shader = ExtResource("2_0e7k0")
 shader_parameter/tint_color = Color(0.69296587, 0.33646062, 0.0839859, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0e7k0"]
+shader = ExtResource("2_0e7k0")
+shader_parameter/tint_color = Color(0.60480005, 0.72, 0.68736005, 1)
 
 [node name="ImageContent" type="GridContainer"]
 anchors_preset = 15
@@ -20,8 +25,28 @@ size_flags_vertical = 3
 script = ExtResource("1_et6yg")
 
 [node name="ImageHolder" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_n15mh")
-position = Vector2(162, 125)
+position = Vector2(170, 141)
 texture = ExtResource("1_mawja")
 
 [node name="ImageSource_Test" parent="." instance=ExtResource("3_et6yg")]
+
+[node name="Background" type="TextureRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_0e7k0")
+clip_contents = true
+layout_mode = 2
+texture = ExtResource("5_n15mh")
+expand_mode = 4
+stretch_mode = 6
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = 1
+material = SubResource("ShaderMaterial_0e7k0")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_mawja")
+expand_mode = 1
+stretch_mode = 5

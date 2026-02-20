@@ -25,7 +25,10 @@ public partial class StartupDev : Node
 		}
 		var config_node = configNodesInGroup[0];
 		var config = config_node as IConfiguration;
-		_log.Information("Config NumberOfMonitors: {x}", config.NumberOfMonitors);
+		if (config != null)
+		{
+			_log.Information("Config NumberOfMonitors: {x}", config.NumberOfMonitors);
+		}
 		
 		var gui = GetNode<GuiManager>("/root/Main/GUI");
 		gui.Start();
