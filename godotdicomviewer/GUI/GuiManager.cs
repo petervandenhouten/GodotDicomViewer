@@ -1,83 +1,246 @@
 using Godot;
-using System;
-using System.Collections.Generic;
 using Serilog;
+using GodotDicomViewer.Code.Commands;
+using GodotDicomViewer.GUI.Controls;
 
-public partial class GuiManager : Node
+namespace GodotDicomViewer.GUI
 {
-	private static readonly ILogger _log = Log.ForContext<GuiManager>();
-	private static readonly PackedScene monitor_scene = GD.Load<PackedScene>("res://GUI//Monitor/monitor.tscn");
-	private IMediator? _mediator = null;
-	
-	protected void connect_to_mediator()
+	/// <summary>
+	/// GUI Manager handling complex commands.
+	/// Shows type-safe command handling with context passing.
+	/// </summary>
+	public partial class GuiManager : Node
 	{
-		// TODO: we could pass a list of strings id that we would like to receive
-		_mediator = Mediator.FindMediatorNode(this);
-		
-		if (_mediator !=null)
-		{
-			// Subscribe to the interface event (pure C#)
-			_mediator.command_triggered += on_command;
-		}
-		// subscribe to the Godot-generated C# event
-		//var mediator = mediator_node as Mediator;
-		//mediator.godot_command_triggered += on_command_godot;
+		private static readonly ILogger _log = Log.ForContext<GuiManager>();
+		private MediatorV2 _mediator;
+		private CommandContext _commandContext;
 
-		if (_mediator != null) _log.Information("GUI manager connected to Mediator.");
-	}
-	
-	protected void on_command(object? sender, string id)
-	{
-		_log.Information("on_command (C#) {id} ", id);
-		
-		if ( id == "Exit") exit_application();
-	}
-		
-	public void Start()
-	{
-		_log.Information("Start");
-		var monitors = GetMonitorsFromChildNodes();
-		_log.Information("Number of monitor nodes found {x}", monitors.Count);
-		connect_to_mediator();
-	}
-	
-	public void AddMonitor(int id, bool has_viewer, bool has_patient)
-	{
-		_log.Information("AddMonitor {id} viewer={v} patient={p}", id, has_viewer, has_patient);
-		
-		var monitor = monitor_scene.Instantiate<MonitorManager>();
-		if ( monitor == null )
+		public override void _Ready()
 		{
-			_log.Error("Cannot instantiate a monitor scene node");
-			return;
-		}
-
-		// TODO: Replace with initialize function
-		monitor.MonitorId 		 = id;
-		monitor.HasPatientWindow = has_patient;
-		monitor.HasViewerWindow  = has_viewer;
-		
-		// add the viewer as a child of this node (note that this is not the main control)
-		AddChild(monitor);
-		_log.Information("Create monitor node for {x}", id);
-	}
-	
-	protected List<MonitorManager> GetMonitorsFromChildNodes()
-	{
-		var list = new List<MonitorManager>();	
-		foreach (Node child in GetChildren())
-		{
-			if (child.IsInGroup("Monitor"))
+			// Find the Mediator node in the scene (should be a child of GUI)
+			_mediator = GetNode<MediatorV2>("Mediator");
+			if (_mediator == null)
 			{
-				list.Add(child as MonitorManager);
+				_log.Error("Mediator node not found as child of GuiManager");
+				return;
+			}
+
+			_commandContext = new CommandContext()
+				.WithSceneRoot(GetNode("/root") ?? this)
+				.WithMediator(_mediator)
+				// These would normally come from your scene/manager
+				// .WithImageViewer(GetImageViewer())
+				// .WithDataProvider(GetDataProvider())
+				// .WithDialogManager(GetDialogManager())
+				// .WithStatusBar(GetStatusBar())
+			;
+
+			// Subscribe to command events
+			_mediator.command_triggered_v2 += OnCommandExecuted;
+
+			// Log all available commands
+			_log.Information("Available Commands");
+			foreach (var command in _mediator.GetAllCommands())
+			{
+				_log.Information("  {CommandID}: {Caption} ({Category})", command.CommandID, command.Caption, command.Category);
+				if (!string.IsNullOrEmpty(command.Tooltip))
+				{
+					_log.Debug("    Tooltip: {Tooltip}", command.Tooltip);
+				}
 			}
 		}
-		return list;
-	}
-	
-	protected void exit_application()
-	{
-		_log.Information("exit_application");
-		GetTree().Quit();	
+
+		/// <summary>
+		/// Central event handler for all commands.
+		/// Uses pattern matching for type-safe handling.
+		/// </summary>
+		private void OnCommandExecuted(object sender, ICommand cmd)
+		{
+			_log.Information("Executing command: {CommandID}", cmd.CommandID);
+
+			try
+			{
+				// Handle specific commands with their requirements
+				switch (cmd)
+				{
+					// File operations
+					case ExitCommand exitCmd:
+						HandleExitCommand(exitCmd);
+						break;
+
+					// View operations
+					case ZoomInCommand zoomCmd:
+						HandleZoomCommand(zoomCmd);
+						break;
+
+					case AdjustWindowLevelCommand levelCmd:
+						HandleWindowLevelCommand(levelCmd);
+						break;
+
+					case MeasureCommand measureCmd:
+						HandleMeasureCommand(measureCmd);
+						break;
+
+					// Data operations
+					case LoadStudyCommand studyCmd:
+						HandleLoadStudyCommand(studyCmd);
+						break;
+
+					// Default: any other command
+					default:
+						HandleGenericCommand(cmd);
+						break;
+				}
+			}
+			catch (System.Exception ex)
+			{
+				_log.Error(ex, "Command execution failed: {CommandID}", cmd.CommandID);
+			}
+		}
+
+		/// <summary>
+		/// Handle exit command with confirmation.
+		/// </summary>
+		private void HandleExitCommand(ExitCommand cmd)
+		{
+			_log.Information("Exiting application");
+			// You could show a confirmation dialog here
+			GetTree().Quit();
+		}
+
+		/// <summary>
+		/// Handle zoom command - requires image viewer.
+		/// </summary>
+		private void HandleZoomCommand(ZoomInCommand cmd)
+		{
+			if (_commandContext.CurrentImageViewer == null)
+			{
+				_log.Warning("Cannot zoom: No image viewer available");
+				return;
+			}
+
+			// Execute through context
+			cmd.Execute(_commandContext);
+		}
+
+		/// <summary>
+		/// Handle window/level adjustment - requires dialog and viewer.
+		/// </summary>
+		private void HandleWindowLevelCommand(AdjustWindowLevelCommand cmd)
+		{
+			if (_commandContext.DialogManager == null)
+			{
+				_log.Warning("Cannot adjust window/level: No dialog manager");
+				return;
+			}
+
+			cmd.Execute(_commandContext);
+		}
+
+		/// <summary>
+		/// Handle measure tool toggle.
+		/// </summary>
+		private void HandleMeasureCommand(MeasureCommand cmd)
+		{
+			_log.Information("Toggling measurement tool");
+			cmd.Execute(_commandContext);
+		}
+
+		/// <summary>
+		/// Handle study loading - requires data provider and confirmation.
+		/// </summary>
+		private void HandleLoadStudyCommand(LoadStudyCommand cmd)
+		{
+			if (_commandContext.DataProvider == null)
+			{
+				_log.Warning("Cannot load study: No data provider available");
+				return;
+			}
+
+			if (_commandContext.CurrentPatient == null)
+			{
+				_log.Warning("Cannot load study: No patient selected");
+				return;
+			}
+
+			cmd.Execute(_commandContext);
+		}
+
+		/// <summary>
+		/// Generic handler for unknown commands.
+		/// </summary>
+		private void HandleGenericCommand(ICommand cmd)
+		{
+			_log.Debug("Generic command: {CommandID}", cmd.CommandID);
+			_log.Debug("  Caption: {Caption}", cmd.Caption);
+			_log.Debug("  Category: {Category}", cmd.Category);
+			_log.Debug("  Type: {Type}", cmd.Type);
+
+			// Could execute generic command here if it doesn't need context
+			// cmd.Execute(_commandContext);
+		}
+
+		/// <summary>
+		/// Example: Trigger command programmatically.
+		/// </summary>
+		public void ExecuteCommand(string commandID)
+		{
+			if (string.IsNullOrEmpty(commandID))
+			{
+				_log.Warning("ExecuteCommand: Empty command ID");
+				return;
+			}
+
+			// Get command from mediator
+			var command = _mediator.GetCommand(commandID);
+			if (command == null)
+			{
+				_log.Warning("ExecuteCommand: Command not found: {CommandID}", commandID);
+				return;
+			}
+
+			// Trigger through mediator (fires event)
+			_mediator.command(commandID);
+		}
+
+		/// <summary>
+		/// Example: Get all commands of a category.
+		/// Useful for building dynamic menus.
+		/// </summary>
+		public void ShowCommandsByCategory(string category)
+		{
+			_log.Information("Commands in category: {Category}", category);
+			var commands = _mediator.GetCommandsByCategory(category);
+
+			foreach (var cmd in commands)
+			{
+				_log.Information("  {Caption}", cmd.Caption);
+			}
+		}
+
+		/// <summary>
+		/// Manually start the GUI manager (alternative to _Ready).
+		/// </summary>
+		public void Start()
+		{
+			_log.Information("GuiManager.Start() called");
+		}
+
+		/// <summary>
+		/// Add a monitor to the GUI.
+		/// </summary>
+		public void AddMonitor(int monitorIndex, bool hasViewer, bool hasPatient)
+		{
+			_log.Information("AddMonitor: Index={index}, HasViewer={hasViewer}, HasPatient={hasPatient}", 
+				monitorIndex, hasViewer, hasPatient);
+		}
+
+		public override void _ExitTree()
+		{
+			if (_mediator != null)
+			{
+				_mediator.command_triggered_v2 -= OnCommandExecuted;
+			}
+		}
 	}
 }

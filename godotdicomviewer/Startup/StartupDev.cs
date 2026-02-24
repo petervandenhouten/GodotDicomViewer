@@ -2,6 +2,7 @@ using Godot;
 using System;
 using Serilog;
 using GodotDicomViewer.Configuration;
+using GodotDicomViewer.GUI;
 
 // Startup in dev mode, does not add monitor, data or datasources, but use the 
 // scene graph as designed by the developer

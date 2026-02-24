@@ -1,5 +1,5 @@
 using System;
-
+using Godot;
 //public delegate void command_triggered_delegate(string id);
 
 public interface IMediator

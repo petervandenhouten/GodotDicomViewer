@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwve7yk5vevu2"]
+
+[ext_resource type="Script" uid="uid://c328elwg4nby5" path="res://GUI/Controls/CommandButton.cs" id="1_c0r0h"]
+
+[node name="CommandButton-X" type="Button"]
+toggle_mode = true
+action_mode = 0
+script = ExtResource("1_c0r0h")
+ButtonID = "X"
+
+[connection signal="toggled" from="." to="." method="button_toggled"]

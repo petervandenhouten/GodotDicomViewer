@@ -2,6 +2,7 @@ using Godot;
 using System;
 using Serilog;
 using GodotDicomViewer.Configuration;
+using GodotDicomViewer.GUI;
 
 // Startup with configation, add monitors and datasources as configured
 

@@ -10,6 +10,9 @@ public partial class ImageContent : GridContainer
 	
  	public override void _Ready()
  	{
+		// Add to group for scoped discovery by commands
+		AddToGroup("image_content");
+		
 		image_holder = GetNode<Sprite2D>("ImageHolder");
 		if ( image_holder is null ) 
 		{

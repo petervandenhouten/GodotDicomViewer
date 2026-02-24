@@ -21,11 +21,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
+[node name="CommandButton-ShowPatienScreen" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 text = "Viewer/Patients
 "
+script = ExtResource("2_h5lrm")
+ButtonID = "ShowPatientScreen"
 
 [node name="CommandButton-Exit" type="Button" parent="HBoxContainer"]
 layout_mode = 2

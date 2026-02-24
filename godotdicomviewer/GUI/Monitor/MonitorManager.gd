@@ -1,6 +1,6 @@
 extends Node
 
-var view_window = preload("res://ViewerWindow/viewer_window.tscn")
+var view_window = preload("res://GUI/ViewerWindow/Viewer/viewer_window.tscn")
 
 func _ready() -> void:
 	var main = get_parent()
